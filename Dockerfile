@@ -1,3 +1,3 @@
 FROM gitlab/dind
 
-RUN apt install make
+RUN apt update && apt install make
