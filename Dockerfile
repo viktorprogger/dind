@@ -1,18 +1,8 @@
 FROM jpetazzo/dind
 
-# Install Docker from Docker Inc. repositories.
-RUN curl -sSL https://get.docker.com/ | sh && \
-    apt-get remove docker docker-engine docker.io containerd runc && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y \
-        docker-engine \
-        make \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        gnupg-agent \
-        software-properties-common && \
+    apt-get install -y make && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -24,5 +14,3 @@ RUN curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-c
 ENV LOG=file
 ENTRYPOINT ["wrapdocker"]
 CMD []
-
-RUN apt update && apt install make
